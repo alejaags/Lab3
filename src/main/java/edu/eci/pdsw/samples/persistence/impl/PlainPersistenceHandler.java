@@ -6,6 +6,8 @@
 package edu.eci.pdsw.samples.persistence.impl;
 
 import edu.eci.pdsw.samples.persistence.PersistenceHandler;
+import edu.eci.pdsw.samples.services.WordProcessorServices;
+import edu.eci.pdsw.samples.services.WordProcessorServicesFactory;
 import java.util.logging.Logger;
 
 /**
@@ -14,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class PlainPersistenceHandler implements PersistenceHandler{
 
-    UTF8EncodingValidator encodingValidator=new UTF8EncodingValidator();
+    EncodingValidator encodingValidator=WordProcessorServicesFactory.getInstance().getValidator();
     
     @Override
     public void save(String content, String fileName) {

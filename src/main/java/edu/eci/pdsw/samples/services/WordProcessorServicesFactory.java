@@ -11,8 +11,10 @@ import edu.eci.pdsw.samples.services.impl.WordProcessorServicesImpl;
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import edu.eci.pdsw.samples.persistence.PersistenceHandler;
+import edu.eci.pdsw.samples.persistence.impl.EncodingValidator;
 import edu.eci.pdsw.samples.persistence.impl.PlainPersistenceHandler;
 import edu.eci.pdsw.samples.persistence.impl.SerializationPersistenceHandler;
+import edu.eci.pdsw.samples.persistence.impl.UnicodeEncodingValidator;
 import edu.eci.pdsw.samples.spelling.TypoCorrector;
 import edu.eci.pdsw.samples.spelling.impl.LocalTypoCorrector;
 import edu.eci.pdsw.samples.spelling.impl.OnlineTypoCorrector;
@@ -35,6 +37,7 @@ public class WordProcessorServicesFactory {
                     protected void configure() {
                         bind(TypoCorrector.class).to(LocalTypoCorrector.class);
                         bind(PersistenceHandler.class).to(PlainPersistenceHandler.class);
+                        bind(EncodingValidator.class).to(UnicodeEncodingValidator.class);
                         bind(WordProcessorServices.class).to(WordProcessorServicesImpl.class);
                     }
 
@@ -44,7 +47,11 @@ public class WordProcessorServicesFactory {
 
         
     }
-
+    
+    public EncodingValidator getValidator(){
+        return injector.getInstance(EncodingValidator.class);
+    }
+    
     public WordProcessorServices getServiciosAlquiler(){
         return injector.getInstance(WordProcessorServices.class);   
     }

@@ -11,10 +11,10 @@ import java.util.logging.Logger;
  *
  * @author hcadavid
  */
-public class UnicodeEncodingValidator{
+public class UnicodeEncodingValidator extends EncodingValidator{
 
 
-    public boolean validateEncoding(String text) {
+    public boolean validateRequiredEncoding(String text) {
         LOG.info("Validating UNICODE-Enconding for text....");
         return true;
     }
